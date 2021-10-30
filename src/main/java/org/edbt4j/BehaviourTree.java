@@ -26,7 +26,6 @@ public class BehaviourTree implements Scheduler {
         Node currentNode = nodes.pop();
         while (currentNode != null) {
             if (currentNode.getStatus() == Status.INACTIVE) {
-                System.out.println("inactive: " + currentNode);
                 currentNode = nodes.pop();
                 continue;
             }
@@ -39,10 +38,6 @@ public class BehaviourTree implements Scheduler {
 
             currentNode = nodes.pop();
         }
-
-//        if (nodes.isEmpty()) {
-//            this.start();
-//        }
     }
 
     public void start() {

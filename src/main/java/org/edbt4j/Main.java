@@ -40,6 +40,8 @@ public class Main {
         private int tickCount = 0;
         private int limit = new Random().nextInt(5);
 
+
+
         @Override
         protected void onStart() {
             schedule();
@@ -57,7 +59,7 @@ public class Main {
         }
 
         @Override
-        protected void onChildStopped(Node node) {
+        protected void onChildStopped(Node childNode) {
 
         }
 

@@ -22,14 +22,21 @@ public class SequenceNode extends CompositeNode {
     @Override
     protected void onStart() {
         this.iter = getChildNodes().iterator();
-        if (iter.hasNext()) iter.next().start();
-        else stop(Status.FAILURE);
+        if (iter.hasNext()) {
+            iter.next().start();
+        } else {
+            stop(Status.FAILURE);
+        }
     }
 
     @Override
-    protected void onChildStopped(Node node) {
-        if (node.getStatus() == Status.FAILURE) stop(Status.FAILURE);
-        else if (node.getStatus() == Status.SUCCESS && iter.hasNext()) iter.next().start();
-        else stop(Status.FAILURE);
+    protected void onChildStopped(Node childNode) {
+        if (childNode.getStatus() == Status.FAILURE) {
+            stop(Status.FAILURE);
+        } else if (childNode.getStatus() == Status.SUCCESS && iter.hasNext()) {
+            iter.next().start();
+        } else {
+            stop(Status.FAILURE);
+        }
     }
 }

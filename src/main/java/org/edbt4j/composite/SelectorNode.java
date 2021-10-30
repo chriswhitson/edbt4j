@@ -27,9 +27,13 @@ public class SelectorNode extends CompositeNode {
     }
 
     @Override
-    protected void onChildStopped(Node node) {
-        if (node.getStatus() == Status.SUCCESS) stop(Status.SUCCESS);
-        else if (node.getStatus() == Status.FAILURE && iter.hasNext()) iter.next().start();
-        else stop(Status.FAILURE);
+    protected void onChildStopped(Node childNode) {
+        if (childNode.getStatus() == Status.SUCCESS) {
+            stop(Status.SUCCESS);
+        } else if (childNode.getStatus() == Status.FAILURE && iter.hasNext()) {
+            iter.next().start();
+        } else {
+            stop(Status.FAILURE);
+        }
     }
 }
